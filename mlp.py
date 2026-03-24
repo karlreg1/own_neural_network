@@ -24,6 +24,16 @@ class Layer():
         self.weights -= learning_rate * self.grad_weights
         self.biases -= learning_rate * self.grad_biases
 
+class SoftMax():
+    def forward(self, x):
+        exp = np.exp(x - np.max(x))
+        self.output = exp / exp.sum() 
+        return self.output
+    
+    def backward(self, x):
+        s = self.output
+        jacobian = np.diag(s) - np.outer(s, s)
+        return jacobian @ x
 
 class Relu():
     def forward(self, x):
