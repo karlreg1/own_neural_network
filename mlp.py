@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib as plt
 
 class Layer():
     def __init__(self, input_size, output_size, activation_fct):
@@ -21,7 +20,9 @@ class Layer():
         grad_input = self.weights.T @ delta_activation
     
         return grad_input
-
+    def update(self, learning_rate):
+        self.weights -= learning_rate * self.grad_weights
+        self.biases -= learning_rate * self.grad_biases
 
 
 class Relu():
@@ -31,13 +32,20 @@ class Relu():
     def backward(self, x):
         #converts the matrix x first into boolean values (x_i > 1 -> true else false) and converts them then into folating point numbers
         return (x > 0).astype(float)
+    
+class Linear():
+    def forward(self, x):
+        return x
+    
+    def backward(self, x):
+        return np.ones_like(x)
 
 class MSELoss():
     def forward(self, y_pred, y_true):
         return np.mean((y_true - y_pred)**2)
     
     def backward(self, y_pred, y_true):
-        return (2 / len(y_true)) * (y_pred - y_true)
+        return 2 * (y_pred - y_true)
 
 class MLP():
     def __init__(self):
@@ -56,14 +64,7 @@ class MLP():
         for layer in reversed(self.layers):
             delta = layer.backward(delta)
 
-mlp = MLP()
-layer1 = Layer(3, 4, Relu())
-layer2 = Layer(4, 4, Relu())
-layer3 = Layer(4, 1, Relu())
-mlp.add_layer(layer1)
-mlp.add_layer(layer2)
-mlp.add_layer(layer3)
+    def update(self, learning_rate):
+        for layer in self.layers:
+            layer.update(learning_rate)
 
-x = np.array([1.0, 2.0, 3.0])  
-result = mlp.forward(x)
-print(result)
