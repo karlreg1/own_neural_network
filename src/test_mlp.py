@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
-from mlp import *
+import numpy as np
+from mlp import MLP, Layer
+from activations import Relu, Linear
+from losses import MSELoss
 
 #data for training
 X = np.random.randn(100, 3)

@@ -18,3 +18,4 @@ A ground-up implementation of a simple neural network based on my university lec
 * **Python 3.12**
 * **NumPy:** Used for all linear algebra and matrix manipulations.
 * **Matplotlib:** Used for visualizing training data, loss curves, and model accuracy.
+* **Scikit-learn:** Used to downloade the MNIST dataset.
