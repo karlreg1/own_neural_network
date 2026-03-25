@@ -24,46 +24,6 @@ class Layer():
         self.weights -= learning_rate * self.grad_weights
         self.biases -= learning_rate * self.grad_biases
 
-class SoftMax():
-    def forward(self, x):
-        exp = np.exp(x - np.max(x))
-        self.output = exp / exp.sum() 
-        return self.output
-    
-    def backward(self, x):
-        s = self.output
-        jacobian = np.diag(s) - np.outer(s, s)
-        return jacobian @ x
-
-class Relu():
-    def forward(self, x):
-        return np.maximum(0, x)
-    
-    def backward(self, x):
-        #converts the matrix x first into boolean values (x_i > 1 -> true else false) and converts them then into folating point numbers
-        return (x > 0).astype(float)
-    
-class Linear():
-    def forward(self, x):
-        return x
-    
-    def backward(self, x):
-        return np.ones_like(x)
-
-class MSELoss():
-    def forward(self, y_pred, y_true):
-        return np.mean((y_true - y_pred)**2)
-    
-    def backward(self, y_pred, y_true):
-        return 2 * (y_pred - y_true)
-
-class CrossEntropyLoss():
-    def forward(self, y_pred, y_true):
-        return -np.sum(y_true * np.log(y_pred + 1e-8)) # + 1e-8 is a verry small number that is added so that the log does not become 0
-    def backward(self, y_pred, y_true):
-        return -y_true / (y_pred + 1e-8)
-
-
 class MLP():
     def __init__(self):
         self.layers = []
