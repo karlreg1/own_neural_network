@@ -45,3 +45,6 @@ class MLP():
         for layer in self.layers:
             layer.update(learning_rate)
 
+    def train(self, X, Y, epochs, l_rate):
+        pass
+
