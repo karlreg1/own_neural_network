@@ -1,6 +1,6 @@
 # Own Neural Network
 
-A ground-up implementation of a simple neural network based on my university lectures on Artificial Neural Networks.
+A ground-up implementation of a simple neural network based on my university lecture on Artificial Neural Networks.
 
 ## Goals
 * **Multilayer Perceptron (MLP):** A working model capable of performing regression tasks.
