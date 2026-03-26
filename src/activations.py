@@ -7,7 +7,16 @@ class Relu():
     def backward(self, x):
         #converts the matrix x first into boolean values (x_i > 1 -> true else false) and converts them then into folating point numbers
         return (x > 0).astype(float)
-   
+    
+class LeakyRelu():
+    def __init__(self, beta=0.01):
+        self.beta = beta
+    def forward(self, x):
+        return np.where(x > 0, x, self.beta * x)
+
+    def backward(self, x):
+        return np.where(x > 0, 1, self.beta)
+
 class Linear():
     def forward(self, x):
         return x
