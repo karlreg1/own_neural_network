@@ -12,7 +12,8 @@ A ground-up implementation of a simple neural network based on my university lec
 ## Current State
 * **MLP for Regression:** Completed implementation for simple regression tasks.
 * **Perceptron Algorithm:** Implemented a standalone single-layer perceptron out of interest
-* **Classification:** Currently working on getting classification to work.
+* **Classification:** Now works. I donk know if for everything further testing is needed.
+* **MNIST Dataset:** Does not work currently
 
 ## Tech Stack
 * **Python 3.12**
